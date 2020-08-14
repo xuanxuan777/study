@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        header,nav,footer{
+            font-size: 30px;
+            font-weight: bold;
+            background-color: gray;
+            margin-bottom: 5px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+        }
+        article{
+            background-color: skyblue;
+            height: 300px;
+            float: left;
+            width: 56%;
+            margin-right: 5px;
+        }
+        aside{
+            background-color: thistle;
+            height: 300px;
+            float: right;
+            width: 34%;
+        }
+        article,aside{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+        .clearfix::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        img{
+            width: 100%;
+        }
+        .img{
+            background-image: url(./img/bg1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* height: 400px; */
+            padding-bottom: 56%;
+        }
+        @media(max-width: 600px){
+            article,aside{
+                width: 100%;
+            }
+            article{
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <header>标题</header>
+        <nav>导航</nav>
+        <div class="img"></div>
+        <!-- <img src="./img/bg1.jpg" alt=""> -->
+        <div class="clearfix">
+            <article>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sem erat, egestas quis luctus ut, rhoncus vitae risus. Integer venenatis libero sit amet sapien dictum, quis bibendum mi volutpat. Cras pretium quam quis magna facilisis, eget feugiat nisi lacinia.</article>
+            <aside>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sem erat, egestas quis luctus ut, rhoncus vitae risus. Integer venenatis libero sit amet sapien dictum, quis bibendum mi volutpat. Cras pretium quam quis magna facilisis, eget feugiat nisi lacinia.</aside>
+        </div>
+        <footer>结尾</footer>
+    </div>
+</body>
+</html>
