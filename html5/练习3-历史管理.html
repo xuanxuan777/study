@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            background-color: black;
+            display: flex;
+            height: 50px;
+            width: 400px;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .box div {
+            width: 30%;
+            height: 100%;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+        }
+
+        .box .active {
+            background-color: gray;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="one active">first</div>
+        <div class="two">second</div>
+        <div class="three">thired</div>
+    </div>
+    <script>
+        var box = document.getElementsByClassName("box")[0];
+        var div1 = box.getElementsByTagName("div");
+        var person = {};
+        location.hash=div1[0].classList[0];
+        for (var i = 0; i < div1.length; i++) {
+            div1[i].onclick = function () {
+                for (var j = 0; j < div1.length; j++) {
+                    div1[j].classList.remove("active");
+                }
+                this.classList.add("active");
+                location.hash = this.classList[0];
+            }
+        }
+        window.onhashchange = function () {
+            var _location = location.hash.slice(1);
+            console.log(_location);
+            for (var i = 0; i < div1.length; i++) {
+                if (div1[i].classList[0] == _location) {
+                    for (var j = 0; j < div1.length; j++) {
+                        div1[j].classList.remove("active");
+                    }
+                    div1[i].classList.add("active");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
