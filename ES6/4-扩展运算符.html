@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>11111</li>
+        <li>22222</li>
+        <li>33333</li>
+    </ul>
+    <script>
+        /*
+        扩展运算符...
+            1 合并数组
+            2 数组复制
+            3 将类数组转成数组
+        */
+        let arr1 = [1, 2, 3, 7];
+        let arr2 = [4, 5, 6, 8];
+        // 1 合并数组
+            // console.log(arr1.concat(arr2));//12374568
+            // console.log([...arr1, ...arr2]);//12374568
+            // console.log([...arr1, "abc", ...arr2]);//1237abc4568
+
+        // 2 数组复制
+            // let arr3=[...arr1];
+            // arr1[0]=9;
+            // console.log(arr1,arr3);//[9, 2, 3, 7]  [1, 2, 3, 7]
+
+            // 类数组 不是真正的数组 for .length ,没有数组对象下的方法
+            let ali=document.getElementsByTagName("li");
+            // console.log(ali);
+            // for(let i=0;i<ali.length;i++){
+            //     console.log(ali[i]);
+            // }
+            // let result=[];
+            // for(let i=0;i<ali.length;i++){
+            //     result.push(ali[i]);
+            // }
+            // console.log(result);
+
+        // 3 将类数组转成数组
+            // let arr4=[...ali];
+            // console.log(arr4);
+        //合并对象
+            // let obj1={
+            //     name:"zs",
+            //     age:18
+            // }
+            // let obj2={
+            //     name:"lisi",
+            //     school:"xx"
+            // }
+            // let obj3={...obj1,...obj2};
+            // console.log(obj3);//{name: "lisi", age: 18, school: "xx"}
+    </script>
+</body>
+
+</html>

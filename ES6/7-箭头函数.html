@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <script>
+        /*
+            箭头函数:
+                1. this指向 普通函数中this指向的执行时的this；
+                    箭头函数中的this->声明是的this，
+                    箭头函数this 父作用域中的this
+                2. 箭头函数不能作为构造函数 不能通过new
+                3. 箭头函数中没有arguments
+        */
+            //    function fn(){
+
+            //    }
+            //    var f1=function(){
+
+            //    }
+
+            // var f2=(x,y)=>{
+            //     console.log(x,y);//1 2
+            // }
+            // f2(1,2);
+
+            // var f2=x=>x;
+            // var f2=(x)=>{
+            //     return x;
+            // }
+            // var f2=x=>{
+            //     return x;
+            // }
+            // console.log( f2(1));//1
+
+            // var ali=document.getElementsByTagName("li");
+            // for(var i=0;i<ali.length;i++){
+            //     ali[i].onclick=function(){
+            //         // setTimeout(function(){
+            //         //     console.log(this);//window
+            //         // },1000);
+            //         setTimeout(()=>{
+            //             console.log(this);//li
+            //         },1000);
+            //     }
+            // }
+
+            // var obj={
+            //     name:"zs",
+            //     age:18,
+            //     say:function(){
+            //         console.log(this);//{name: "zs", age: 18, say: ƒ}
+            //     }
+            // }
+            // obj.say();
+            // var obj={
+            //     name:"zs",
+            //     age:18,
+            //     say:()=>{
+            //         console.log(this);//window
+            //     }
+            // }
+            // obj.say();
+
+            // function People(){ //人  类 = 构造函数(constructor)
+            //     this.name="zs"
+            // }
+            // var obj1=new People();
+            // console.log(obj1);
+            // var Cat=()=>{
+
+            // }
+            // var cat1=new Cat();//Cat is not a constructor
+
+            let f3=function(...rest){
+                console.log(rest);
+            }
+            f3(1,2,3);
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //argument
+        // function fn(){
+        //     console.log(arguments);//类数组 获取参数 argumens[0]
+        //     console.log(arguments.callee);//函数(可用于递归函数)
+        // }
+        // fn(1,2,3);
+
+
+        // function fn1(x,...rest){//函数剩余的参数 剩余的参数放到数组
+        //     console.log(rest);//[2,3]
+        // }
+        function fn1(x,y,...rest){//函数剩余的参数 剩余的参数放到数组
+            console.log(rest);//[3]
+        }
+        fn1(1,2,3);
+    </script>
+</body>
+</html>

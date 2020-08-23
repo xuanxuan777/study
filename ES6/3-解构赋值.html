@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组解构按照下标
+            // let arr=[1,2,3];
+            // let[a,b,c,d=10]=arr;（如果d的位置下标之前数组存在，则d的值为之前的值，若不存在，则为赋予的值）
+            // console.log(a,b,c,d);//1 2 3 10
+
+            // let arr=[1,2,[3,4],5];
+            // let [x,y,z,m]=arr;
+            // console.log(x,y,z,m);//1 2 [3, 4] 5
+
+            // let arr=[1,2,[3,4],5];
+            // let [x,y,[p,q],m]=arr;
+            // console.log(x,y,p,q,m);//1 2 3 4 5
+
+        // 对象解构 赋值根据key 属性对应 如果解构赋值undefined 用默认值
+            // let obj={name:"zs",age:18};
+            // let{name,age}=obj;
+            // console.log(name,age);//zs 18
+
+            // let obj={name:"zs",age:18};
+            // let{age,name}=obj;
+            // console.log(name,age);//zs 18
+
+            // let obj={name:"zs",age:18};
+            // let{age,name,school}=obj;
+            // console.log(name,age,school);//zs 18 undefined
+
+            // let obj={name:"zs",age:18};
+            // let{age,name,school="北大"}=obj;
+            // console.log(name,age,school);//zs 18 北大
+
+            // let obj={name:"zs",age:18,school:"黑大"};
+            // let{age,name,school="北大"}=obj;
+            // console.log(name,age,school);//zs 18 黑大
+
+            // let obj={name:"zs",age:18};
+            // let{age:a,name,school="北大"}=obj;
+            // console.log(name,a,school);//zs 18 北大
+
+        // 字符串->索引
+            // let str="abcdefg";
+            // let [x,y,z]=str;
+            // console.log(x,y,z);//a b c
+
+        //a,b互换
+        let a=5;
+        let b=6;
+        //1.
+            // let c=a;
+            // a=b;
+            // b=c;
+            // console.log(a,b);//6 5
+        //2.
+            // a=a+b;
+            // b=a-b;
+            // a=a-b;
+            // console.log(a,b);//6 5
+        //3.
+            // [b,a]=[a,b];
+            // console.log(a,b);//6 5
+    </script>
+</body>
+</html>
