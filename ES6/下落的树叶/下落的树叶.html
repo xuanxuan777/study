@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // var high=document.body.clientHeight;
+        // var widh=document.body.clientWidth;
+        // console.log(high,widh);
+        // 获取屏幕宽度
+        var screenWidth = document.documentElement.clientWidth || document.body.clientWidth;
+        var screenHeigt = document.documentElement.clientHeight || document.body.clientHeight;
+        function Leaf(){
+            this.width=Math.random()*50+100;
+            this.top=0;
+            this.left=Math.random()*(screenWidth-this.width);  //0-(screenWidth-width)
+
+            //dom元素 图片
+            var img=new Image();
+            img.src="./img/"+(Math.floor(Math.random()*4)+1)+".png";
+            img.style.width=this.width+"px";
+            img.style.top=this.top+"px";
+            img.style.left=this.left+"px";
+
+            this.img=img;
+        }
+        Leaf.prototype.init=function(){
+            document.body.appendChild(this.img);
+        }
+        Leaf.prototype.fall=function(){
+            //起跑时间
+            setTimeout(() => {
+                //速度
+                this.timer=setInterval(() => {
+                    if(this.img.offsetTop>=screenHeigt-this.img.offsetHeight){
+                        clearInterval(this.timer);
+                    }else{
+                        this.img.style.top=this.img.offsetTop+5+"px";
+                    }
+                }, 20);
+            }, Math.random()*1000);
+           
+        }
+        var leaflist=[];
+        for(var i=0;i<10;i++){
+            var leaf1=new Leaf();
+            leaflist.push(leaf1);
+            leaf1.init();
+        }
+        document.onclick=function(){
+            for(var i=0;i<leaflist.length;i++){
+                leaflist[i].fall();
+            }
+        }
+    </script>
+</body>
+</html>

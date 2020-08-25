@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function People(name,age){
+            this.name=name;
+            this.age=age;
+        }
+        People.prototype.eat=function(){
+            console.log(this.name+"再吃面包");
+        }
+        var person=new People("zs",18);
+        console.log(person);
+        person.eat();
+
+        // 继承 继承属性 在子类的构造函数中 通过父类.call(this) 继承属性
+        function Coder(name,age){
+            // this ->c1 
+            People.call(this,name,age);//继承属性
+        }
+        // 继承方法 子类的原型对象 = new 父类
+        Coder.prototype=new People();
+        Coder.prototype.constructor=Coder;//Coder的原型对象下contructor属性  指回Coder
+        var coder=new Coder("lili",18);
+        console.log(coder);
+        coder.eat();
+    </script>
+</body>
+</html>
