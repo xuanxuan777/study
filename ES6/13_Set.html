@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr1 = [1,2,3,4,6,3,2,3,4,2,2,2]
+        // Set类似于数组，但是成员的值都是唯一的  ->数组去重
+        // let s1=new Set(arr1);
+        // console.log(s1);
+        // s1.add(1);
+        // console.log(s1);
+        // s1.add(2);
+        // console.log(s1);
+        // s1.delete(1);
+        // console.log(s1);
+        // console.log(s1.has(3));
+
+        function fn(arr){
+            var obj={};
+            var result=[];
+            for(var i=0;i<arr.length;i++){
+                if(obj[arr[i]]){
+                    obj[arr[i]]+=1;
+                }else{
+                    obj[arr[i]]=1;
+                    result.push(arr[i]);
+                }
+            }
+            console.log(obj);
+            return result;
+        }
+        console.log( fn(arr1) );
+
+
+        let s1=new Set(arr1);
+        console.log(s1);
+        var s2=[...s1];
+        console.log(s2);
+    </script>
+</body>
+</html>
