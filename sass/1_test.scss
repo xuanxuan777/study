@@ -1,0 +1,81 @@
+@import 'common.scss';
+$color:red;
+$width:100px;
+$h:height;
+body{
+    // background-color: $color;
+    width: $width;
+}
+#container{
+    h2{
+        background: #0f0;
+        #{$h}:200px;
+        border: 1px solid #000;
+    }
+    p{
+        background: #ccc;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        // padding:{
+        //     top:20px;
+        //     bottom: 30px;
+        // }
+    }
+    a{
+        color: red;
+        &:hover{
+            color: #0f0;
+        }
+        .b{
+            color: #ccc;
+        }
+    }
+}
+.div1{
+    width: abs(-200px);
+    height: 100px+100px;
+    background-color: #000;
+    color: $color;
+}
+.div2{
+    @extend .div1;
+    color: lighten(#f00, 30%);
+}
+
+.arrow{
+    @include arrow(50px,#f00,left);
+}
+
+@for $i from 1 to 5 {
+    .icon#{$i}{
+        width: 20*$i;
+    }
+}
+@for $i from 1 through 5 {
+    .ic#{$i}{
+        width: 20*$i;
+    }
+}
+
+$list:success error warn;
+@each $item in $list {
+    .#{$item}{
+        width: 100px;
+        background: url(#{$item}.jpg);
+    }
+}
+
+$x:3;
+@while ($x<5) {
+    .xx#{$x}{
+        width: 100px*$x;
+    }
+    $x:$x+1;
+}
+
+@function add($x,$y){
+    @return $x+$y;
+}
+.aa{
+    width: add(100px,200px );
+}

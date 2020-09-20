@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <script>
+        let ali=document.getElementsByTagName("li");
+        console.log(ali);
+        /*HTMLCollection(3)
+            0: li
+            1: li
+            2: li
+            length: 3
+            __proto__: HTMLCollection*/
+
+            var arr=[...ali];
+            console.log(arr);
+            //(3) [li, li, li]
+
+            var arr2=Array.from(ali);
+            console.log(arr2);
+            //(3) [li, li, li]
+
+            console.log(arr2.includes(1));//false
+            console.log(arr2.includes("li"));//false
+
+            // var arr3=["1","2","3"];
+            // console.log(arr3);
+            // console.log(arr3.includes("1") );//true
+
+            var arr3=['a','b','c','d'];
+
+            for(let i=0;i<arr3.length;i++){
+                console.log(arr3[i],i);
+            }
+            // a 0
+            // b 1
+            // c 2
+            // d 3
+
+            // for of
+            // keys() 索引
+            // values() 值
+            // entries() [索引，值]
+            // for(elem of arr3.keys()){
+            //     console.log(elem);//0 1 2 3
+            // }
+
+            // for(elem of arr3.keys()){
+            //     // console.log(arr3.key);
+            //     console.log(arr3[elem]);
+            // }
+
+            // for(elem of arr3.values()){
+            //     console.log(elem);//a b c d
+            // }
+
+            for(elem of arr3.entries()){
+                console.log(elem);
+            }
+                //  [0, "a"]
+                //  [1, "b"]
+                //  [2, "c"]
+                //  [3, "d"]
+
+            for([key,elem] of arr3.entries()){
+                console.log(key,elem);
+                    // 0 "a"
+                    // 1 "b"
+                    // 2 "c"
+                    // 3 "d"
+            }
+
+            arr3.forEach(function(key,values){
+                console.log(key,values);
+            })
+                // a 0
+                // b 1
+                // c 2
+                // d 3
+
+            let arr4=[{
+                name:"zs",
+                age:18
+            },{
+                name:"lisi",
+                age:20
+            },{
+                name:"wangwu",
+                age:25
+            },{
+                name:"zhaoliu",
+                age:30
+            }];
+            console.log(arr4);
+
+            //过滤 返回一个符合func条件的元素数组
+            let arr5=arr4.filter(function(val,index){
+                return val.age>23;
+            });
+            console.log(arr5);
+            // 0: {name: "wangwu", age: 25}
+            // 1: {name: "zhaoliu", age: 30}
+
+            //map():映射出一个新数组 返回一个新的Array，每个元素为调用func的结果
+            let arr6=arr4.map(function(obj,index){
+                return{name: obj.name,age:obj.age*2}
+            });
+            console.log(arr6);
+            // 0: {name: "zs", age: 36}
+            // 1: {name: "lisi", age: 40}
+            // 2: {name: "wangwu", age: 50}
+            // 3: {name: "zhaoliu", age: 60}
+
+            let arr7=[1,2,3,4];
+            let arr8=arr7.map(function(obj,index){
+                return (obj*2+1);
+            });
+            console.log(arr8);
+            // [3, 5, 7, 9]
+
+            //只找到第一个就不找了
+            let arr9=arr4.find(function(obj,index){
+                return obj.age>20;
+            });
+            console.log(arr9);
+            // {name: "wangwu", age: 25}
+    </script>
+</body>
+</html>

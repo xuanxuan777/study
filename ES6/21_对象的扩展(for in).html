@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var name="zs";
+        var obj={
+            // 属性名和属性值 同名简写
+            // name:name,
+            name,
+            age:18,
+            // say:function(){
+            //     console.log("123456789"+this.name);
+            // }
+            //对象方法的简写方式
+            say(){
+                console.log("123456789"+this.name);
+
+            }
+        }
+        console.log(obj);
+        // {name: "zs", age: 18}
+        obj.say();
+        // 123456789zs
+
+        //动态属性 obj[s1]
+        let s1='age';
+
+        console.log(obj.say());//undefined
+
+        console.log(obj[s1]);//18
+        
+
+        //==值 ===值和类型
+        console.log(1=='1');//true
+        console.log(1==='1');//false
+
+        var obj1={
+            name:'lisi',
+            age:18
+        }
+        var obj2={
+            name:'wangwu',
+            age:20,
+            school:'黑大'
+        }
+        console.log({...obj1,...obj2});
+        // {name: "wangwu", age: 20, school: "黑大"}
+        console.log(Object.assign(obj1,obj2));
+        // {name: "wangwu", age: 20, school: "黑大"}
+
+        //循环对象
+        console.log(Object.keys(obj2));
+        // 0: "name"
+        // 1: "age"
+        // 2: "school"
+        console.log(Object.values(obj2));
+        // 0: "wangwu"
+        // 1: 20
+        // 2: "黑大"
+        console.log(Object.entries(obj2));
+        // 0: (2) ["name", "wangwu"]
+        // 1: (2) ["age", 20]
+        // 2: (2) ["school", "黑大"]
+
+        
+    </script>
+</body>
+</html>
