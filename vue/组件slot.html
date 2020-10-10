@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .box-contain{
+            width: 300px;
+            height: 200px;
+            background: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top:-100px;
+            margin-left:-150px;
+        }
+        .close{
+            float: right;
+        }
+        .box-text{
+            border-bottom: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click='click'>show</button>
+        <my-app title="登录" v-if='this.isShow' @show='fn'>
+            <div slot="slot1">
+                <div>
+                    <label for="username">用户名</label>
+                    <input type="text" id="username">
+                </div>
+                <div>
+                    <label for="password">密码</label>
+                    <input type="password" id="password">
+                </div>
+                <div>
+                    <button>登录</button>
+                </div>
+            </div>
+            <div slot='slot2'>
+                <p>我是底部</p>
+            </div>
+        </my-app>
+    </div>
+    <template id="temp">
+        <div class="box">
+            <div class="box-contain">
+                <div class="box-text">
+                    {{title}}
+                    <span class="close" @click='close'>[x]</span>
+                </div>
+                <div>
+                    <slot name='slot1'></slot>
+                </div>
+                <div>
+                    <slot name='slot2'></slot>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                isShow:false
+            },
+            methods:{
+                click(){
+                    this.isShow=true;
+                },
+                fn(){
+                    this.isShow=false;
+                }
+            },
+            components:{
+                'my-app':{
+                    template:"#temp",
+                    props:['title'],
+                    data(){
+                        return{
+
+                        }
+                    },
+                    methods:{
+                        close(){
+                            // 父组件中isShow = false;  show自定义事件(子类向父类传东西)
+                            this.$emit('show');
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
