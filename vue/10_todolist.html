@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            width: 500px;
+            margin: 0 auto;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul{
+            list-style: none;
+            margin-top: 20px;
+        }
+        .xx{
+            float: right;
+        }
+        .red{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>todolist</h2>
+        <hr>
+        <span>名称：</span><input type="text" placeholder="请输入商品名称" v-model='addname'>
+        <span>价格：</span><input type="text" placeholder="请输入商品价格" v-model='addprice'>
+        <button @click='add'>添加</button>
+        <input type="text" placeholder="请输入搜索内容" @keyup='search()' v-model='serchVAr'>
+        <button>搜索</button>
+        <ul>
+            <li v-for='(obj,index) in things' :class='{red:obj.isred}' @click='color(obj)' v-if='obj.isinclude==true'>
+                <input type="checkbox" v-model='obj.isred'>
+                    {{obj.name}}
+                    <span class="xx">
+                    {{obj.price}}
+                    <span @click.stop='del(index)'>[x]</span>
+                </span>
+                
+            </li>
+        </ul>
+        <button @click='delall()'>删除选中</button>
+        <span>总价</span> {{total()}}
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                addname:'',
+                addprice:'',
+                serchVAr:'',
+                things:[{
+                    name:'苹果',
+                    price:5,
+                    isred:false,
+                    isinclude:true
+                },{
+                    name:'iphone 11',
+                    price:6666,
+                    isred:false,
+                    isinclude:true
+                }]
+            },
+            methods:{
+                color(obj){
+                    obj.isred=!obj.isred;
+                },
+                total(){
+                    var sum=0;
+                    this.things.forEach(element => {
+                        if(element.isred){
+                            sum += element.price;
+                        }
+                    });
+                    return sum;
+                },
+                delall(){
+                    this.things=this.things.filter((obj,index)=>{
+                        return (obj.isred==false);
+                    });
+                },
+                del(index){
+                    this.things.splice(index,1);
+                },
+                add(){
+                    this.things.push({
+                        name:this.addname,
+                        price:this.addprice,
+                        isinclude:true
+                    });
+                    this.addname='';
+                    this.addprice='';
+                },
+                search(){
+                    this.things.forEach((obj) => {
+                        if(obj.name.includes(this.serchVAr)){
+                            obj.isinclude=true;
+                        }else{
+                            obj.isinclude=false;
+                        }
+                    });
+                }
+            }
+        })
+    </script>
+</body>
+</html>

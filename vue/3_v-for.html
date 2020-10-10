@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    <button @click='change'>click</button>
+        <ul>
+            <li v-for='obj in arr'>{{obj}}</li>
+        </ul>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                arr:['1','2','3']
+            },
+            methods:{
+                change(){
+                    this.arr.push('456');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

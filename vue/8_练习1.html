@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model='name'>
+        <button @click='change()'>add</button>
+        <ul>
+            <li v-for='(obj,index) in fruit' :class='{red:obj.isred}' @click.stop='color(obj)' :key='obj.name'>{{obj.name}} 
+                <button @click='del(index)'>del</button>
+            </li>
+        </ul>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                fruit:[{name:"苹果",isred:false},{name:"香蕉",isred:false}],
+                name:""
+            },
+            methods:{
+                change(){
+                    this.fruit.push({name:this.name,isred:false});
+                    this.name="";
+                },
+                color(obj){
+                    obj.isred=!obj.isred;
+                },
+                del(index){
+                    this.fruit.splice(index,1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
