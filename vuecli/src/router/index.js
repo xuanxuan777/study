@@ -4,6 +4,9 @@ import Home from './../views/Home'
 import Test from './../views/Test'
 import A from './../views/A'
 import B from './../views/B'
+import Test3 from '../views/Test3'
+import Test5 from '../views/Test5'
+import IVueX from '@/views/Vuex'
 
 Vue.use(VueRouter)
 
@@ -19,7 +22,7 @@ const routes = [
     component:Home,
     children:[
       {
-      path:'a',
+      path:'a',//子路由不需要写/
       component:A
     },{
       path:'b',
@@ -30,6 +33,21 @@ const routes = [
   {
     path:'/test',
     component:Test
+  },{
+    path:'/vuex',
+    component:IVueX
+  },{
+      path:'/test5',
+      component:Test5,
+      alias:'/aa'
+  },
+  {
+    path:'/:id',
+    redirect:'/test3/:id'
+  },
+  {
+    path: '/test3/:id',
+    component: Test3
   }
 ]
 

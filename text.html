@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var spiralOrder=function(matrix){
+            var ans=[];
+            var spiralLoop=function(){
+                var arr=[];
+                for(var i=0;i<matrix.length;i++){
+                    if(i===0){
+                        arr=arr.concat(matrix[0]);
+                    }
+                    if(i>0&&i<matrix.length-1){
+                        var insertRight=matrix[0].length===1?[]:
+                        arr.splice(-(i-1),i-1),
+                        last=matrix[i].splice(-1,1),
+                        first=matrix[i].splice(0,1);
+                        arr=arr.concat(last,first,insertRight);
+                    }
+                }
+                matrix.splice(0,1);
+                matrix.splice(-1,1);
+                ans=ans.concat(arr);
+                if(matrix.length>=1){
+                    apiralLoop(matrix);
+                }
+            }
+            spiralLoop(matrix);
+            return ans;
+        }
+        console.log(ans);
+    </script>
+</body>
+</html>

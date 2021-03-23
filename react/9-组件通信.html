@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        class Main extends React.Component{
+            constructor(){
+                super()
+                this.state = {
+                    score : 90
+                }
+                this.change = this.change.bind(this)
+            }
+            change(num, type){
+                let {score} = this.state
+                type === '+'
+                ?this.setState({
+                    score : score + num
+                })
+                :this.setState({
+                    score : score - num
+                })
+                
+            }
+            render(){
+                let {score} = this.state
+                return (
+                    <div>
+                        <h1>我是父组件</h1>
+                        <Child name = '我是子组件' score = {score} change = {this.change}></Child>
+                    </div>
+                )
+            }
+        }
+        class Child extends React.Component{
+            constructor(){
+                super()
+            }
+            render(){
+                let {name, score, change} = this.props
+                return (
+                    <div>
+                        <p>
+                            {name} 成绩: {score}
+                            <button onClick = {() => {change(3,'+')}}>+</button>
+                            <button onClick = {() => {change(2,'-')}}>-</button>
+                        </p>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Main></Main>,
+            document.getElementById("root")
+        )
+    </script>
+</body>
+</html>

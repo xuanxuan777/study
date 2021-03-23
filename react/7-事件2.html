@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        class Main extends React.Component {
+            constructor(){
+                super()
+                this.state = {
+                    num : 1
+                }
+                this.change1 = this.change.bind(this);
+            }
+            change(){
+                let {num} = this.state 
+                this.setState ({
+                    num : num + 1
+                })
+            }
+            render (){
+                return (
+                    <div>
+                        <h1>{this.state.num}</h1>
+                        <button onClick = {this.change1}>click</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Main></Main>,
+            document.getElementById('root')
+        )
+
+
+        // var obj = {
+        //     name : 'sss'
+        // }
+        // function a(){
+        //     console.log(this)
+        // }
+        // a.call(obj)
+        // a.bind(obj)()
+    </script>
+</body>
+</html>
