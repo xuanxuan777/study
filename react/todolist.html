@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        .goodsList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .goodsShow {
+            display: flex;
+            justify-content: space-between;
+        }
+        .active{
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+
+        class ToDoList extends React.Component {
+            constructor() {
+                super()
+                this.isChoose = this.isChoose.bind(this);
+                this.add = this.add.bind(this);
+                this.search = this.search.bind(this);
+                this.delOne = this.delOne.bind(this);
+                this.delAll = this.delAll.bind(this);
+                this.state = {
+                    value: [
+                        { name: '苹果', price: 5, isTrue: false, isShow: true },
+                        { name: '橘子', price: 3, isTrue: true, isShow: true },
+                        { name: '手机', price: 2000, isTrue: false, isShow: true },
+                        { name: '水杯', price: 20, isTrue: false, isShow: true },
+                        { name: '耳机', price: 600, isTrue: false, isShow: true }
+                    ],
+                }
+            }
+            isChoose(obj) {
+                let i = 0;
+                let val = this.state.value;
+                val.forEach((ele) => {
+                    if (ele.name === obj.name) {
+                        // console.log(obj.isTrue);
+                        val[i].isTrue = !obj.isTrue;
+                    }
+                    i = i + 1;
+                })
+                // const nowValue = [...this.state.value]
+                this.setState({
+                    value: val
+                })
+                this.goodsLi.style.background = 'red'
+                console.log(this.state.value)
+            }
+            add() {
+                this.state.value.push({
+                    name: this.goodsName.value,
+                    price: parseInt(this.goodsPrice.value),
+                    isTrue: false,
+                    isShow: true
+                })
+                this.setState({
+                    value: this.state.value
+                })
+            }
+            search() {
+                let i = 0;
+                let val = this.state.value;
+                this.state.value.map((obj, index) => {
+                    if (obj.name.includes(this.serch.value)) {
+                        val[i].isShow = true;
+                    } else {
+                        val[i].isShow = false;
+                    }
+                    i = i + 1;
+                })
+                this.setState({
+                    value: val
+                })
+            }
+            delOne(oldValue) {
+                let i = 0;
+                this.state.value.map((obj, index) => {
+                    if (oldValue.name === obj.name) {
+                        this.state.value.splice(i, 1);
+                    }
+                    i = i + 1;
+                })
+            }
+            total() {
+                var sum = 0;
+                this.state.value.forEach(element => {
+                    if (element.isTrue) {
+                        sum += element.price;
+                    }
+                });
+                return sum;
+            }
+            delAll() {
+                this.state.value = this.state.value.filter((element, index) => {
+                    return (element.isTrue === false)
+                })
+                this.setState({
+                    value : this.state.value
+                })
+            }
+            // TODO:
+            render() {
+                let { value } = this.state
+                return (
+                    <div className="box">
+                        <h1>ToDoList</h1>
+                        <div className='boxInform'>
+                            名称：
+                            <input type="text" placeholder='请输入商品名称' ref = {(goodsName) => { return this.goodsName = goodsName }} />
+                            价格：
+                            <input type="text" placeholder='请输入商品价格' ref = {(goodsPrice) => { return this.goodsPrice = goodsPrice }} />
+                            <button onClick={this.add}>添加</button>
+                        </div>
+                        <div className='boxSearch'>
+                            <input type="text" placeholder='请输入搜索名称' ref = {(goodsSerch) => { return this.serch = goodsSerch }} />
+                            <button onClick={this.search}>搜索</button>
+                        </div>
+                        <ul className='goodsList'>
+                            {
+                                value.map((obj, index) => {
+                                    return (
+                                        obj.isShow
+                                            ? <li key={index} onClick={() => { this.isChoose(obj) } } className = {obj.isTrue ? 'active' : ''}>
+                                                <div className='goodsShow'>
+                                                    <div>
+                                                        <input type='checkbox' name='goods' readOnly checked={obj.isTrue} />
+                                                        {obj.name}
+                                                    </div>
+                                                    <div>
+                                                        {obj.price}
+                                                    &nbsp;
+                                                    <label onClick={() => { this.delOne(obj) }}>[X]</label>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            : ""
+                                    )
+                                })
+                            }
+                            <button onClick = {this.delAll}>删除选中</button>
+                            总价：{this.total()}
+                        </ul>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <ToDoList></ToDoList>,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+
+</html>
